@@ -1,0 +1,54 @@
+<div class="col-8 offset-2 padding-lr">
+    <div class="card margin-bottom-10" *ngFor="let task of taskData;let index=index">
+        <div class="col-12 display-flex" [ngClass]="task.isCompleted && !task.inProgress?'opecity-on':'opecity-off'">
+            <div class="col-1 padding-top-8 text-align-left position-relative">
+                <p class="position-absolute left-0">{{index+1}}</p>
+            </div>
+            <div class="col-1 padding-top-8 text-align-left position-relative">
+                <input type="checkbox" checked="{task.isCompleted && !task.inProgress}"
+                    class="checkbox-input position-absolute" [id]="task.name+task.id"
+                    *ngIf="!isCompletedView && !inProgressView"
+                    (click)="childEventHandling({data:task,index:index, type:'Task_Completed_Type'})" />
+                <input type="checkbox" checked="task.isCompleted && !task.inProgress"
+                    class="checkbox-input position-absolute" [id]="task.name+task.id" *ngIf="isCompletedView"
+                    (click)="stopPropagate($event)" />
+            </div>
+            <div class="col-6 padding-top-8 text-align-left"
+                [ngClass]="task.isCompleted && !task.inProgress?'task-finished':'in-process'">
+                <label class="task-label">
+                    <h5>{{task.name}}</h5>
+                </label>
+                <p class="task-description">{{task.description}} </p>
+                <span *ngIf="task.dueDate">{{task.dueDate  | date}}</span>
+            </div>
+            <div class="col-4 padding-top-8 text-align-right position-relative">
+                <ul class="icon-list position-absolute">
+                    <li>
+                        <img src="assets/icons/inprogress.png" [ngClass]="task.inProgress?'fade-out':'fade-in'"
+                            *ngIf="!isCompletedView && !inProgressView"
+                            (click)="childEventHandling({data:task , index:index, type:'Task_InProgress_Type'})" />
+                        <img src="assets/icons/inprogress.png" [ngClass]="task.inProgress?'fade-out':'fade-in'"
+                            *ngIf="inProgressView" />
+                    </li>
+                    <li *ngIf="!isCompletedView && !inProgressView">
+                        <img src="assets/icons/edit.svg"
+                            (click)="childEventHandling({data:task, type:'Task_Update_Type'})">
+                    </li>
+                    <li *ngIf="!isCompletedView && !inProgressView">
+                        <img src="assets/icons/remove.svg"
+                            (click)="childEventHandling({data:task , index:index, type:'Task_Delete_Type'})" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isDataEmpty">
+        <h2 class="not-found">Data not found</h2>
+    </div>
+</div>
+
+<!-- @click="$emit('childEvent',{event:$event,data:task,index:index, type:'Task_Completed_Type'})" -->
+<!-- @click="stopPropagate($event)" -->
+<!-- @click="$emit('childEvent',{data:task , index:index, type:'Task_InProgress_Type'})" -->
+<!-- @click="$emit('childEvent',{data:task, type:'Task_Update_Type'})" -->
+<!-- @click="$emit('childEvent',{data:task , index:index, type:'Task_Delete_Type'})" -->

@@ -1,0 +1,41 @@
+<div class="container my-task-container">
+    <div class="col-8 offset-2">
+        <div class="card border-none">
+            <form class name="myTaskForm" (ngSubmit)="onSubmit($event)" #MyTaskForm="ngForm">
+                <p *ngIf="errorMessage !==null && isError">
+                    <b>Please correct the following error(s):</b>
+                    <br />
+                    <span class="error-message">{{errorMessage}}</span>
+                </p>
+                <div class="col-12 display-flex form-group row">
+                    <div class="col-8">
+                        <input type="text" placeholder="Enter title name..." class="form-control" name="name"
+                            [(ngModel)]="taskObj.name" #name="ngModel" required autocomplete="false"
+                            autofocus="false" />
+                    </div>
+                    <div class="col-4">
+                        <input type="Date" class="form-control" [(ngModel)]="taskObj.dueDate" required name="dueDate"
+                            #dueDate="ngModel" />
+                    </div>
+                </div>
+                <div class="col-12 form-group row">
+                    <textarea type="text" rows="4" [(ngModel)]="taskObj.description" required class="task-textarea"
+                        name="description" #description="ngModel"></textarea>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <button *ngIf="!isTaskUpdate"
+                            class="btn btn-outline-secondary saveTaskBtn">{{isTaskSave ?'Saving...' :'Save'}}</button>
+
+                        <button *ngIf="isTaskUpdate"
+                            class="btn btn-outline-secondary saveTaskBtn">{{isTaskSave ?'Updating...' :'Update'}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf=isTaskLoad>
+        <app-task-list #taskList [tasks]="tasks" (taskEventRef)="childEventHandling($event)">
+        </app-task-list>
+    </div>
+</div>

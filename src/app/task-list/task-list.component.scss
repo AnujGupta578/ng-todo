@@ -1,0 +1,99 @@
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.display-flex {
+    display: flex;
+    padding: 15px;
+}
+
+.icon-list {
+    display: inline-flex;
+    list-style: none;
+}
+
+.icon-list>li>img {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-list>li {
+    padding-right: 10px;
+}
+
+.padding-top-8 {
+    padding-top: 8px;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.checkbox-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.task-label {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.task-description {
+    margin-bottom: 0;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute !important;
+    top: 40%;
+    right: 0;
+}
+
+.left-0 {
+    left: 0 !important;
+}
+
+.padding-lr {
+    padding-left: 32px !important;
+    padding-right: 55px !important;
+}
+
+.fade-in {
+    filter: grayscale(1);
+}
+
+.fade-out {
+    filter: none;
+}
+
+.opecity-on {
+    filter: opacity(0.5);
+}
+
+.opecity-off {
+    filter: none;
+}
+
+.task-finished {
+    text-decoration: line-through;
+}
+
+.in-process {
+    text-decoration: none;
+}
+
+.not-found {
+    text-align: center;
+
+}
